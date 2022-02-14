@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import Pending from './pending';
+import Success from './success';
+import Failured from './failured';
+import {Route, Routes} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Routes>
+        <Route path={'/success'} element={<Success/>}/>
+        <Route path={'/pending'} element={<Pending/>}/>
+        <Route path={'/failured'} element={<Failured/>}/>
+      </Routes>
+      
     </div>
   );
 }
