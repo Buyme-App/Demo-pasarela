@@ -55,11 +55,11 @@ router.post("/", async (req, res) => {
         mode: "not_specified",
       }, // establece el costo de envio por defecto
       back_urls: {
-        success: "http://localhost/mercadopago/success.html", //     ANDUVO TODO OK
-        pending: "http://localhost/mercadopago/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
-        failure: "http://localhost/mercadopago/failure.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
+        success: "http://localhost:3000/success.html", //     ANDUVO TODO OK
+        pending: "http://localhost:3000/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
+        failure: "http://localhost:3000/failured.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
       },
-      notification_url: "https://2e3e-200-127-142-243.ngrok.io/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
+      notification_url: "https://buyme-backend-development.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
       auto_return: "approved",
     };
 
@@ -87,4 +87,4 @@ module.exports = router;
 
 
 
-// "purpose": "wallet_purchase", //con esto se acepta solo usuarios con mp registrado
+// "purpose": "wallet_purchase", //con esto se acepta solo usuarios con mp registrado/
