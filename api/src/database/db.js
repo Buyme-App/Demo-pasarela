@@ -34,10 +34,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { } = sequelize.models;
 // console.log(sequelize.models)
-
+const { Client, Invoice,} = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
+//asociacion de uno a muchos ----> Client a Invoice s
+Client.hasMany(Invoice);  //Clave externa definida en Invoice 
+Invoice.belongsTo(Client); //Clave externa definida en Invoice
 
 
 module.exports = {
