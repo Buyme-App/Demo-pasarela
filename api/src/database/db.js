@@ -10,7 +10,11 @@ const {
 console.log(DB_USER);
 console.log(DB_PASSWORD);
 console.log(DB_HOST);
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`);
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`,{
+    logging: false, 
+    native: false, 
+    freezeTableName: true,
+});
 
 const basename = path.basename(__filename);
 
