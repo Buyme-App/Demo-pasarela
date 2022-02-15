@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   // let {name, quantity, price } = req.body;           //vienen los items del front
   // const {clientId, products} = req body
   let clientId = 1; //hardcodeado tiene que venir del front
-
+  console.log('>>>>>>>>>>>>>>>>>>>>>fkdjfkdj')
   const itemsHard = [
     // reemplaza lo que va a venir del front
     {
@@ -48,6 +48,7 @@ router.post("/", async (req, res) => {
   ];
 
   try {
+    console.log('Antes<<<<<')
     let preference = {
       binary_mode: true, //el pago se acepta o rechaza, ninguna cosa mas
       statement_descriptor: "Buyme App Shop", //envia descripcion del negocio a la tarjeta
@@ -69,6 +70,7 @@ router.post("/", async (req, res) => {
       .create(preference)
       .then(function (response) {
         const valor = response.body.id;
+        console.log('DESPUES<<<<<',clientId, itemsHard, valor)
         createInvoiceDB(clientId, itemsHard, valor)
           .then(function (response1) {})
           .catch(function (error) {
