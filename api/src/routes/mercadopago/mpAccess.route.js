@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const bodyParser = require("body-parser");
-const { SELLER_ACCESS_TOKEN } = process.env;
+// const { SELLER_ACCESS_TOKEN } = process.env;
 
 //llamas a la sdk de mercadopago ya instalada
 const mercadopago = require("mercadopago");
@@ -12,8 +12,10 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 //Agregar credenciales de mercado pago   credencial de prueba (pero produccion) del vendedor
 mercadopago.configure({
-  access_token: SELLER_ACCESS_TOKEN,
+  access_token: 'APP_USR-795368609311295-020422-fae769e7be0de3e4c4c28f63f524af45-1068887150',
 });
+
+
 
 router.post("/", async (req, res) => {
   // Crea un objeto de preferencia que se envia a mercado pago

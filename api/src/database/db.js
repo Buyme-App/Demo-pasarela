@@ -1,4 +1,4 @@
-equire('dotenv').config();
+require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
@@ -7,13 +7,10 @@ const {
 } = process.env;
 
 
-
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/parasarela`);
-
-require("dotenv").config();
-const { Sequelize } = require("sequelize");
-const fs = require("fs");
-const path = require("path");
+console.log(DB_USER);
+console.log(DB_PASSWORD);
+console.log(DB_HOST);
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`);
 
 const basename = path.basename(__filename);
 

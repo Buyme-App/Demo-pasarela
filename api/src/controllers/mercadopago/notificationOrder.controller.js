@@ -1,6 +1,6 @@
 const showErrors = require("../../messageConsole");
 const { Invoice } = require("../../database/db");
-const { SELLER_ACCESS_TOKEN } = process.env;
+// const { SELLER_ACCESS_TOKEN } = process.env;
 const axios = require("axios");
 
 async function notificationOrderDB(id) {
@@ -8,7 +8,7 @@ async function notificationOrderDB(id) {
     if (id === "") return 404;
     else {
       const result = await axios.get(
-        `https://api.mercadolibre.com/merchant_orders/${id}?access_token=${SELLER_ACCESS_TOKEN}`
+        `https://api.mercadolibre.com/merchant_orders/${id}?access_token=APP_USR-795368609311295-020422-fae769e7be0de3e4c4c28f63f524af45-1068887150`
       );
       if (result === null) {
         console.log(`La Merchant_order ${id} no se puede acceder en MP)`);
