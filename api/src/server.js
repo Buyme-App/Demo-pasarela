@@ -21,6 +21,6 @@ server.use((req, res, next) => {
 });
 
 // Routes
-
+server.use('/', router);
 
 module.exports = server;
