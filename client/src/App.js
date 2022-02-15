@@ -3,6 +3,7 @@ import './App.css';
 import Pending from './pending';
 import Success from './success';
 import Failured from './failured';
+import Form from './Form';
 import {Route, Routes} from 'react-router-dom'
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
         <Route path={'/success'} element={<Success/>}/>
         <Route path={'/pending'} element={<Pending/>}/>
         <Route path={'/failured'} element={<Failured/>}/>
+        
+        <Route path={'/mp'} element={<Form/>}/>
       </Routes>
       
     </div>
