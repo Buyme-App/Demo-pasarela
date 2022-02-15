@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const router = require('./routes/index.routes');
+const routes = require('./routes/index.routes');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 
@@ -21,6 +21,6 @@ server.use((req, res, next) => {
 });
 
 // Routes
-server.use('/', router);
+routes(server);
 
 module.exports = server;

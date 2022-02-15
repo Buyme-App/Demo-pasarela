@@ -1,13 +1,15 @@
-const {Router} = require('express');
-const router = Router();
-
-
-router.get('/', (req, res) => {
-
-    res.send('Home Page!!!!!');
-})
+const express = require('express');
+const routeHome = require('./home.routes');
 
 
 
 
-module.exports = router; // Update
+
+const routes = (server) => {
+    server.use('/home', routeHome);
+    
+
+
+}
+
+module.exports = routes; // Update
