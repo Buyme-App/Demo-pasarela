@@ -93,11 +93,13 @@ export default function Form(){
 
                     </div>
                 </div>
+
                 {/* action="https://demo-pasarela.herokuapp.com/mp" */}
                 <form onSubmit={(e) => OnSubmit(e)} > 
-                    {/* <input type="hidden" name="price" value="25" />
-                    <input type="hidden" name="cant" value='4' />
-                    <input type="hidden" name="title" value="Remera de mujer manga corta" /> */}
+                  
+
+                
+    
 
                             <label>Camiones de Jueguete </label>
                             <input type="number" name="one" min='0'  onChange={HandleChange}/>

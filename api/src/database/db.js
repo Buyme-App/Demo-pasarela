@@ -3,18 +3,12 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST
+  DATABASE_URL, DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
 
-
-console.log(DB_USER);
-console.log(DB_PASSWORD);
-console.log(DB_HOST);
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/parasarela`,{
-    logging: false, 
-    native: false, 
-    freezeTableName: true,
-});
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`, {logging: false,
+native: false,
+freezeTableName: true} );
 
 const basename = path.basename(__filename);
 
@@ -44,13 +38,18 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 
 // console.log(sequelize.models)
-const { Client, Invoice } = sequelize.models;
+const { Client, Invoice, Cart } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
 //asociacion de uno a muchos ----> Client a Invoice s
 Client.hasMany(Invoice); //Clave externa definida en Invoice
 Invoice.belongsTo(Client); //Clave externa definida en Invoice
+
+//asociacion de uno a uno --------> Client a Cart 
+Client.hasOne(Cart); //Clave externa definida en cart
+Cart.belongsTo(Client); //Clave externa definida en cart
+
 
 module.exports = {
   ...sequelize.models,
