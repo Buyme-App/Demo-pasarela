@@ -1,14 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
+import {useDispatch} from 'react-redux';
+import {sendCart} from './actions';
+
 
 
 export default function Form(){
+
+
+    const  [cart, useCart] = useState({});
+    const dispatch = useDispatch();
+
+    let one;
+    let two;
+    let three;
+    let four;
+
+    function HandleChange(e){
+        e.preventDefault();
+       
+
+        if(e.target.name === 'one'){
+            one = {id:1, title: "Camiones de jueguete",   unit_price: 10, quantity: e.target.value};
+            console.log('one' ,one)
+        };
+        if(e.target.name === 'two'){
+            two = {id:2, title: "Autitos Matchbox",   unit_price: 1500, quantity: e.target.value};
+        };
+        if(e.target.name === 'three'){
+            three = {id:3, title: "Autitos Tomica",   unit_price: 1500, quantity: e.target.value};
+        };
+        if(e.target.name === 'four'){
+            four = {id:1, title: "Autos Welly",   unit_price: 1500, quantity: e.target.value};
+        };
+        
+
+    };
+
+    function OnSubmit(e){
+        e.preventDefault();
+
+        useCart({
+            clientId: 1,
+            itemsHard: [
+                one,
+                two,
+                three,
+                four
+                
+            ]
+        });
+        console.log('CART>>>>>>>>>>>>>>>>', cart)
+        dispatch(sendCart(cart));
+        
+    }
 
 
 
     return(
 
         <div>
-            <div class="container">
+            <div>
                     <h2 >Detalle de producto</h2>
                     <div >
 
@@ -42,14 +93,29 @@ export default function Form(){
 
                     </div>
                 </div>
-                
-                <form action="https://demo-pasarela.herokuapp.com/home" method="POST"> 
-                    <input type="hidden" name="price" value="25" />
+                {/* action="https://demo-pasarela.herokuapp.com/mp" */}
+                <form onSubmit={(e) => OnSubmit(e)} > 
+                    {/* <input type="hidden" name="price" value="25" />
                     <input type="hidden" name="cant" value='4' />
-                    <input type="hidden" name="title" value="Remera de mujer manga corta" />
+                    <input type="hidden" name="title" value="Remera de mujer manga corta" /> */}
+
+                            <label>Camiones de Jueguete </label>
+                            <input type="number" name="one" min='0'  onChange={HandleChange}/>
+                            <br />
+                            <label>Autitos Matchbox </label>
+                            <input type="number" name="two" min='0'  onChange={HandleChange}/>
+                            <br />
+                            <label>Autitos Tomica</label>
+                            <input type="number" name="three" min='0'  onChange={HandleChange}/>
+                            <br />
+                            <label>Autos Welly </label>
+                            <input type="number" name="four" min='0'  onChange={HandleChange}/>
+                            <br />
                     
-                    <input type="submit" value="Comprar ahora"/>
+                    <button type="submit"  >Comprar</button>
                 </form> 
+                <br />
+                <br />
 
         </div>
     )
