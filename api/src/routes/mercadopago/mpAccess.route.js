@@ -19,69 +19,10 @@ mercadopago.configure({
 
 router.post("/", async (req, res) => {
   // Crea un objeto de preferencia que se envia a mercado pago
-<<<<<<< HEAD
-  // [{name, quantity, price },{name, quantity, price },{name, quantity, price }] = itemsHard           //vienen los items del front
-  // const {itemsHard, clientId} = req body 
-  // let clientId = 1; //hardcodeado tiene que venir del front
-
+  
  const {clientId, itemsHard} = req.body;
 
-
-  // const itemsHard = [
-  //   // reemplaza lo que va a venir del front
-  //   {
-  //     title: "Camiones de jueguete",                      //equivale a name del modelo Product
-  //     unit_price: 10,           //100.25                   
-  //     quantity: 1,
-  //   },
-  //   {
-  //      title: "Autitos Matchbox",
-  //     unit_price: 1500,
-  //     quantity: 3,
-  //   },
-  //   {
-  //     title: "Autitos Tomica",
-  //     unit_price: 100,
-  //     quantity: 3,
-  //   },
-  //   {
-  //     title: "Autos Welly",
-  //     unit_price: 100,
-  //     quantity: 2,
-  //   },
-  // ];
-=======
-  // let {name, quantity, price } = req.body;           //vienen los items del front
-  // const {clientId, products} = req body
-  let clientId = 1; //hardcodeado tiene que venir del front
-  console.log('>>>>>>>>>>>>>>>>>>>>>fkdjfkdj')
-  const itemsHard = [
-    // reemplaza lo que va a venir del front
-    {
-      title: "Camiones de jueguete",                      //equivale a name del modelo Product
-      unit_price: 10,           //100.25                   
-      quantity: 1,
-    },
-    {
-       title: "Autitos Matchbox",
-      unit_price: 1500,
-      quantity: 3,
-    },
-    {
-      title: "Autitos Tomica",
-      unit_price: 100,
-      quantity: 3,
-    },
-    {
-      title: "Autos Welly",
-      unit_price: 100,
-      quantity: 2,
-    },
-  ];
->>>>>>> 0493e6bb1eb4938a731db1d91cc538ecd3e28f5a
-
   try {
-    console.log('Antes<<<<<')
     let preference = {
       binary_mode: true, //el pago se acepta o rechaza, ninguna cosa mas
       statement_descriptor: "Buyme App Shop", //envia descripcion del negocio a la tarjeta
