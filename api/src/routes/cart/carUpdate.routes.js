@@ -11,8 +11,10 @@ router.put('/', async (req, res)=> {
         const {clientId, items} = req.body;
 
         const result = await cartUpdateDB(clientId, items);
-        if (result===200) res.status(200).send('Cart Updated')
+        console.log(`resultado result: ${result}`);
+        if (result!==400) res.status(200).send('Cart Updated')
         else res.status(400).send('Bad Request');
+        
     }catch(e) {
         showErrors('/cartUpdate', e);
         return 404;

@@ -4,6 +4,7 @@ const routeHome = require("./home.routes");
 
 //carrito de compras
 const cartUpdate = require('./cart/carUpdate.routes'); //agregar para modificar carrito
+const addCard = require("./cart/addCart.routes"); 
 
 //mp
 const mp = require("./mercadopago/mpAccess.route"); //agregar para mercado pago
@@ -17,7 +18,7 @@ const routes = (server) => {
 
   //carrito de compras
   server.use("/cartUpdate", cartUpdate); //Se agrega para el carrito
-
+  server.use("/addCart", addCard);
 };
 
 module.exports = routes; // Update
