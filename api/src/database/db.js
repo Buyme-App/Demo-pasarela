@@ -3,16 +3,32 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST
+  DATABASE_URL
 } = process.env;
 
 
+<<<<<<< HEAD
 console.log(DB_USER);
 console.log(DB_PASSWORD);
 console.log(DB_HOST);
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`, {logging: false,
 native: false,
 freezeTableName: true} );
+=======
+//console.log(DB_USER);
+//console.log(DB_PASSWORD);
+//console.log(DB_HOST);
+const sequelize = new Sequelize(DATABASE_URL,{
+    logging: false, 
+    native: false, 
+    freezeTableName: true,
+      ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
+>>>>>>> 0493e6bb1eb4938a731db1d91cc538ecd3e28f5a
 
 const basename = path.basename(__filename);
 
