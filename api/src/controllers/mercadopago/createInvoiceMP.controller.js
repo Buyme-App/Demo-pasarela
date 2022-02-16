@@ -4,17 +4,17 @@ const { Invoice, Client, Product } = require("../../database/db");
 //[{title:"auto gorgo", unit_price:200.25 quantity:2},{title:"toy soldier", unit_price: 350.34 , quantity:3}]  = itemsHard
 
 async function createInvoiceDB(clientId, itemsHard, preferenceId) {
-  console.log('Funcion<<<<<', clientId, itemsHard, preferenceId)
+  
   try {
     const result = await Client.findByPk(clientId);
-    console.log('Funcion<<<<<REST', result)
+    
     if (result.email === "") return 404;
     else {
       const searchProducts = itemsHard.map(
         async (item) => await Product.findOne({ where: { name: item.title } })
         
       );
-      console.log('FuncionPRO<<<<<',searchProducts )
+      
       let resolve = await Promise.all(searchProducts);
 
       resolve = resolve.map((item) => ({
