@@ -20,7 +20,7 @@ export default function Form(){
        
 
         if(e.target.name === 'one'){
-            one = {id:1, title: "Camiones de jueguete",   unit_price: 10, quantity: e.target.value};
+            one = {id:1, title: "Camiones de jueguete",   unit_price:  10, quantity: e.target.value};
             console.log('one' ,one)
         };
         if(e.target.name === 'two'){
@@ -30,7 +30,7 @@ export default function Form(){
             three = {id:3, title: "Autitos Tomica",   unit_price: 1500, quantity: e.target.value};
         };
         if(e.target.name === 'four'){
-            four = {id:1, title: "Autos Welly",   unit_price: 1500, quantity: e.target.value};
+            four = {id:4, title: "Autos Welly",   unit_price: 1500, quantity: e.target.value};
         };
         
 
