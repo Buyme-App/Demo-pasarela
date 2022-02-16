@@ -43,7 +43,7 @@ export default function Form(){
                     </div>
                 </div>
                 
-                <form action="https://demo-pasarela.herokuapp.com/home" method="POST"> 
+                <form action="http://localhost:3001/mp" method="POST"> 
                     <input type="hidden" name="price" value="25" />
                     <input type="hidden" name="cant" value='4' />
                     <input type="hidden" name="title" value="Remera de mujer manga corta" />
