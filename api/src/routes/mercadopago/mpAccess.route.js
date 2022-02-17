@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
 
   itemsHard = itemsMp;
 
-  
+
   
     try {
       let preference = {
@@ -50,10 +50,11 @@ router.post("/", async (req, res) => {
           mode: "not_specified",
         }, // establece el costo de envio por defecto
         back_urls: {
-          success: "http://localhost:3000/mp", //     ANDUVO TODO OK
+          success: "https://demo-pasarela.vercel.app/mp",
+          failure: "https://demo-pasarela.vercel.app/mp", //     ANDUVO TODO OK
                   //  TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
         },
-        notification_url: "https://http://localhost:3001/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
+        notification_url: "https://demo-pasarela-v2.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
         auto_return: "approved",
       };
       // "https://demo-pasarela.herokuapp.com/notification"
@@ -79,6 +80,7 @@ router.post("/", async (req, res) => {
       return 404;
     }
  }
+
 
  
 });
