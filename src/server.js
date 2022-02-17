@@ -11,10 +11,15 @@ server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.json());
 server.use(morgan("dev"));
 // server.use(cors());
-server.use(cors({ origin: process.env.CORS_URL, credentials: true }));
+server.use(
+  cors({ origin: "https://demo-pasarela.vercel.app/", credentials: true })
+);
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://demo-pasarela.vercel.app/"
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
