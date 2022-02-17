@@ -7,6 +7,7 @@ const router = Router();
 // se le retorna  si fue creado o de lo contrario se devuelve un mensaje
 //password viene hasheado desde el front
 router.post("/", async (req, res) => {
+  console.log('req<<<<<<<<<<<<', req)
   try {
     let {
       firstName,

@@ -19,57 +19,69 @@ mercadopago.configure({
 router.post("/", async (req, res) => {
   // Crea un objeto de preferencia que se envia a mercado pago
 
-  let { clientId, itemsHard } = req.body;
 
-  //  let [id, title, unit_price, quantity] = itemsHard
-
-  let itemsMp = itemsHard.map((e) => {
-    return {
-      title: e.title,
-      unit_price: parseFloat(e.unit_price),
-      quantity: parseInt(e.quantity),
-    };
-  });
+//  let [id, title, unit_price, quantity] = itemsHard
+ 
+ if(!itemsHard || itemsHard !== undefined){
+  console.log('>>>>>>>>>', itemsHard)
+    let itemsMp = itemsHard.map(e => {
+      return{
+        
+        title: e.title,
+        unit_price: parseFloat(e.unit_price),
+        quantity: parseInt(e.quantity)
+      }
+    
+  } )
 
   itemsHard = itemsMp;
 
-  try {
-    let preference = {
-      binary_mode: true, //el pago se acepta o rechaza, ninguna cosa mas
-      statement_descriptor: "Buyme App Shop", //envia descripcion del negocio a la tarjeta
-      items: itemsHard,
-      shipments: {
-        cost: 0,
-        mode: "not_specified",
-      }, // establece el costo de envio por defecto
-      back_urls: {
-        success: "http://demo-pasarela.vercel.app/success.html", //     ANDUVO TODO OK
-        pending: "http://demo-pasarela.vercel.app/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
-        failure: "http://demo-pasarela.vercel.app/failured.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
-      },
-      notification_url: "https://demo-pasarela-v2.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
-      auto_return: "approved",
-    };
 
-    mercadopago.preferences
-      .create(preference)
-      .then(function (response) {
-        const valor = response.body.id;
+  
+    try {
+      let preference = {
+        binary_mode: true, //el pago se acepta o rechaza, ninguna cosa mas
+        statement_descriptor: "Buyme App Shop", //envia descripcion del negocio a la tarjeta
+        items: itemsHard,
+        shipments: {
+          cost: 0,
+          mode: "not_specified",
+        }, // establece el costo de envio por defecto
+        back_urls: {
+          success: "https://demo-pasarela.vercel.app/mp",
+          failure: "https://demo-pasarela.vercel.app/mp", //     ANDUVO TODO OK
+                  //  TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
+        },
+        notification_url: "https://demo-pasarela-v2.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
+        auto_return: "approved",
+      };
+      // "https://demo-pasarela.herokuapp.com/notification"
+      mercadopago.preferences
+        .create(preference)
+        .then(function (response) {
+          const valor = response.body.id;
+          
+          createInvoiceDB(clientId, itemsHard, valor)
+            .then(function (response1) {})
+            .catch(function (error) {
+              console.log(error);
+            });
+          const url = response.body.init_point
+          res.json({url: url}); //se usa el init point de producttion
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        // res.send('Mensajeeeeeee')
+    } catch (e) {
+      showErrors("/mp", e);
+      return 404;
+    }
+ }
 
-        createInvoiceDB(clientId, itemsHard, valor)
-          .then(function (response1) {})
-          .catch(function (error) {
-            console.log(error);
-          });
-        res.redirect(response.body.init_point); //se usa el init point de producttion
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  } catch (e) {
-    showErrors("/mp", e);
-    return 404;
-  }
+
+ 
+
 });
 
 module.exports = router;
