@@ -13,7 +13,7 @@ server.use(morgan("dev"));
 server.use(cors({ origin: CORS_URL, credentials: true }));
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", `${CORS_URL}`);
   res.header(
     "Access-Control-Allow-Headers",
     "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
