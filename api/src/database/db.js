@@ -6,7 +6,7 @@ const {
   DATABASE_URL, DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`, {logging: false,
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerceP`, {logging: false,
 native: false,
 freezeTableName: true} );
 
