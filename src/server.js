@@ -10,7 +10,7 @@ const server = express();
 server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.json());
 server.use(morgan("dev"));
-app.use(cors({ origin: CORS_URL, credentials: true }));
+server.use(cors({ origin: CORS_URL, credentials: true }));
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
