@@ -12,15 +12,13 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 //Agregar credenciales de mercado pago   credencial de prueba (pero produccion) del vendedor
 mercadopago.configure({
-  access_token: 'APP_USR-795368609311295-020422-fae769e7be0de3e4c4c28f63f524af45-1068887150',
+  access_token:
+    "APP_USR-795368609311295-020422-fae769e7be0de3e4c4c28f63f524af45-1068887150",
 });
-
-
 
 router.post("/", async (req, res) => {
   // Crea un objeto de preferencia que se envia a mercado pago
-  
- let {clientId, itemsHard} = req.body;
+
 
 //  let [id, title, unit_price, quantity] = itemsHard
  
@@ -83,9 +81,7 @@ router.post("/", async (req, res) => {
 
 
  
+
 });
 
 module.exports = router;
-
-
-
