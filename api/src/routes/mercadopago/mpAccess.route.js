@@ -48,9 +48,9 @@ router.post("/", async (req, res) => {
         mode: "not_specified",
       }, // establece el costo de envio por defecto
       back_urls: {
-        success: "http://localhost:3000/success.html", //     ANDUVO TODO OK
-        pending: "http://localhost:3000/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
-        failure: "http://localhost:3000/failured.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
+        success: "https://demo-pasarela.vercel.app/success.html", //     ANDUVO TODO OK
+        pending: "https://demo-pasarela.vercel.app/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
+        failure: "https://demo-pasarela.vercel.app/failured.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
       },
       notification_url: "https://demo-pasarela-v2.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
       auto_return: "approved",
