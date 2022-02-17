@@ -1,14 +1,20 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
-const {
-  DATABASE_URL, DB_USER, DB_PASSWORD, DB_HOST
-} = process.env;
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
+const { DATABASE_URL } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`, {logging: false,
-native: false,
-freezeTableName: true} );
+const sequelize = new Sequelize(DATABASE_URL, {
+  logging: false,
+  native: false,
+  freezeTableName: true,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
 const basename = path.basename(__filename);
 
@@ -46,10 +52,9 @@ const { Client, Invoice, Cart } = sequelize.models;
 Client.hasMany(Invoice); //Clave externa definida en Invoice
 Invoice.belongsTo(Client); //Clave externa definida en Invoice
 
-//asociacion de uno a uno --------> Client a Cart 
+//asociacion de uno a uno --------> Client a Cart
 Client.hasOne(Cart); //Clave externa definida en cart
 Cart.belongsTo(Client); //Clave externa definida en cart
-
 
 module.exports = {
   ...sequelize.models,
