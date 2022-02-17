@@ -10,16 +10,16 @@ const server = express();
 server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.json());
 server.use(morgan("dev"));
-server.use(cors());
+app.use(cors({ origin: CORS_URL, credentials: true }));
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
-    "Authorization, Origin, X-Requested-With, Content-Type, Accept"
+    "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
   );
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
 
