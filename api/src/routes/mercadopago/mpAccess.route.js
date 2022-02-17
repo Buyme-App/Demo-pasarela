@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
         pending: "http://localhost:3000/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
         failure: "http://localhost:3000/failured.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
       },
-      notification_url: "https://demo-pasarela.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
+      notification_url: "https://demo-pasarela-v2.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
       auto_return: "approved",
     };
 
