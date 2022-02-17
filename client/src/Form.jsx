@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {sendCart} from './actions';
 
 
@@ -9,7 +9,8 @@ export default function Form(){
 
     const  [cart, useCart] = useState({});
     const dispatch = useDispatch();
-
+    const pagar = useSelector((state) => state.pago);
+    console.log('PAGAF', pagar)
     let one;
     let two;
     let three;
@@ -38,7 +39,7 @@ export default function Form(){
 
     function OnSubmit(e){
         e.preventDefault();
-
+        // window.location.assign('https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1068887150-c94e3f7d-1a8c-454e-81ba-9441ed9e33d0%27');
         useCart({
             clientId: 1,
             itemsHard: [
@@ -54,6 +55,12 @@ export default function Form(){
         
     }
 
+    function pago(e){
+        e.preventDefault();
+        // console.log('Funcion ', pagar)
+        // window.location.assign(pagar) 
+        window.location.assign('https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1068887150-c94e3f7d-1a8c-454e-81ba-9441ed9e33d0%27');
+    }
 
 
     return(
@@ -94,8 +101,9 @@ export default function Form(){
                     </div>
                 </div>
 
-                {/* action="https://demo-pasarela.herokuapp.com/mp" */}
-                <form onSubmit={(e) => OnSubmit(e)} > 
+                {/* action="https://demo-pasarela.herokuapp.com/mp" onSubmit={(e) => OnSubmit(e)} */}
+                {/* action='http://localhost:3001/mp' */}
+                <form onSubmit={(e) => OnSubmit(e)}> 
                   
 
                 
@@ -118,6 +126,12 @@ export default function Form(){
                 </form> 
                 <br />
                 <br />
+
+                <div>
+                    {
+                        pagar !== '' || pagar !== undefined ?  null : <button onClick={(e) => pago(e)}>Pagar</button>
+                    }
+                </div>
 
         </div>
     )
