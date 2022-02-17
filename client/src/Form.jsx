@@ -122,14 +122,14 @@ export default function Form(){
                             <input type="number" name="four" min='0'  onChange={HandleChange}/>
                             <br />
                     
-                    <button type="submit"  >Comprar</button>
+                    <button type="submit"  >Ir a comprar</button>
                 </form> 
                 <br />
                 <br />
 
                 <div>
                     {
-                        pagar !== '' || pagar !== undefined ?  null : <button onClick={(e) => pago(e)}>Pagar</button>
+                        pagar === '' || pagar === undefined ?  null : <button onClick={(e) => pago(e)}>Pagar</button>
                     }
                 </div>
 
