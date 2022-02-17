@@ -58,8 +58,8 @@ export default function Form(){
     function pago(e){
         e.preventDefault();
         // console.log('Funcion ', pagar)
-        // window.location.assign(pagar) 
-        window.location.assign('https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1068887150-c94e3f7d-1a8c-454e-81ba-9441ed9e33d0%27');
+        window.location.assign(pagar) 
+        // window.location.assign('https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1068887150-c94e3f7d-1a8c-454e-81ba-9441ed9e33d0%27');
     }
 
 
