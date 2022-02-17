@@ -94,7 +94,7 @@ export default function Form(){
                     </div>
                 </div>
 
-                {/* action="https://demo-pasarela.herokuapp.com/mp" */}
+                {action="https://demo-pasarela-v2.herokuapp.com/mp"}
                 <form onSubmit={(e) => OnSubmit(e)} > 
                   
 
