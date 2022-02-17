@@ -12,32 +12,27 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 //Agregar credenciales de mercado pago   credencial de prueba (pero produccion) del vendedor
 mercadopago.configure({
-  access_token: 'APP_USR-795368609311295-020422-fae769e7be0de3e4c4c28f63f524af45-1068887150',
+  access_token:
+    "APP_USR-795368609311295-020422-fae769e7be0de3e4c4c28f63f524af45-1068887150",
 });
-
-
 
 router.post("/", async (req, res) => {
   // Crea un objeto de preferencia que se envia a mercado pago
-  
- let {clientId, itemsHard} = req.body;
 
-//  let [id, title, unit_price, quantity] = itemsHard
- 
- let itemsMp = itemsHard.map(e => {
-    return{
-      
+  let { clientId, itemsHard } = req.body;
+
+  //  let [id, title, unit_price, quantity] = itemsHard
+
+  let itemsMp = itemsHard.map((e) => {
+    return {
       title: e.title,
       unit_price: parseFloat(e.unit_price),
-      quantity: parseInt(e.quantity)
-    }
-  
- } )
+      quantity: parseInt(e.quantity),
+    };
+  });
 
- itemsHard = itemsMp;
+  itemsHard = itemsMp;
 
- 
- 
   try {
     let preference = {
       binary_mode: true, //el pago se acepta o rechaza, ninguna cosa mas
@@ -48,9 +43,9 @@ router.post("/", async (req, res) => {
         mode: "not_specified",
       }, // establece el costo de envio por defecto
       back_urls: {
-        success: "http://localhost:3000/success.html", //     ANDUVO TODO OK
-        pending: "http://localhost:3000/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
-        failure: "http://localhost:3000/failured.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
+        success: "http://demo-pasarela.vercel.app/success.html", //     ANDUVO TODO OK
+        pending: "http://demo-pasarela.vercel.app/pending.html", //ESTAMOS PROCESANDO TU PAGO Y TE AVISA SI SE ACREDITA
+        failure: "http://demo-pasarela.vercel.app/failured.html", //           TE DA LA OPCION DE VOLVER AL SITIO (ACA) CUANDO ALGO FALLA
       },
       notification_url: "https://demo-pasarela-v2.herokuapp.com/notification", //"https://mercadopago-checkout.herokuapp.com/webhook", NO SE QUE HACE
       auto_return: "approved",
@@ -60,7 +55,7 @@ router.post("/", async (req, res) => {
       .create(preference)
       .then(function (response) {
         const valor = response.body.id;
-        
+
         createInvoiceDB(clientId, itemsHard, valor)
           .then(function (response1) {})
           .catch(function (error) {
@@ -78,6 +73,3 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
-
-
-
